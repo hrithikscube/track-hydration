@@ -17,7 +17,7 @@ const PrimaryButton = ({ label, onClick, width, variant, type }) => {
     return (
         <div className={`${width || 'w-fit'}`}>
 
-            <button type={type} onClick={onClick} className='lg:text-base hover:shadow-lg hover:opacity-90 text-sm h-[42px] w-full px-6 bg-blue-600 text-white font-medium rounded'>
+            <button type={type} onClick={onClick} className='lg:text-sm hover:shadow-lg hover:opacity-90 text-sm h-[42px] w-full px-6 bg-blue-600 text-white font-medium rounded'>
                 {label}
             </button>
 

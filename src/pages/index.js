@@ -1,20 +1,22 @@
-import Input from '@/components/Input';
-import PrimaryButton from '@/components/PrimaryButton';
-import SelectInput from '@/components/SelectInput';
 import Head from 'next/head';
+import Input from '@/components/Input';
 import React, { useState } from 'react';
+import SelectInput from '@/components/SelectInput';
+import PrimaryButton from '@/components/PrimaryButton';
+
+const initial_fields = {
+  name: '',
+  phone: '',
+  weight: '',
+  age: '',
+  activeness: '',
+  consume_frequency: '',
+  often_thirsty: ''
+}
 
 const Home = () => {
   const [activeScreen, setActiveScreen] = useState('Form');
-  const [params, setParams] = useState({
-    name: '',
-    phone: '',
-    weight: '',
-    age: '',
-    activeness: '',
-    consume_frequency: '',
-    often_thirsty: ''
-  });
+  const [params, setParams] = useState(initial_fields)
 
   const [result, setResult] = useState('');
 
@@ -47,15 +49,18 @@ const Home = () => {
   if (activeScreen === 'Results') {
     return (
       <div className='flex flex-col w-full h-screen items-center justify-center'>
-        <div className='lg:w-96 w-full h-full mx-auto flex flex-col items-center justify-center px-4 gap-4 bg-[#f2f2f2]'>
-          <h2 className='lg:text-xl text-lg font-semibold text-[#121212]'>Here’s How Much Water You Need Daily!</h2>
+        <div className='md:w-96 w-full h-full mx-auto flex flex-col items-center justify-center px-4 gap-4 bg-[#f2f2f2]'>
+          <h2 className='lg:text-lg text-base font-semibold text-[#121212]'>Here’s How Much Water You Need Daily!</h2>
           <div className='flex flex-col h-20 w-full bg-blue-100 rounded-xl p-4 items-center justify-center'>
-            <p className='text-lg font-medium text-blue-900'>{result}</p>
+            <p className='lg:text-base text-sm text-blue-900'>{result}</p>
           </div>
           <PrimaryButton
             label='Recalculate'
             width='w-full'
-            handleClick={() => setActiveScreen('Form')}
+            onClick={() => {
+              setActiveScreen('Form')
+              setParams(initial_fields)
+            }}
           />
         </div>
       </div>
@@ -67,15 +72,16 @@ const Home = () => {
       <Head>
         <title>Track Hydration</title>
       </Head>
-      <form onSubmit={handleSubmit} className='lg:w-96 w-full h-full mx-auto flex flex-col gap-4 items-center justify-center px-4 bg-[#f2f2f2]'>
-        <h2 className='lg:text-xl text-lg font-semibold text-[#121212]'>Enter the following details</h2>
+
+      <form onSubmit={handleSubmit} className='md:w-96 w-full h-full mx-auto flex flex-col gap-4 items-center justify-center px-4 bg-[#f2f2f2]'>
+        <h2 className='lg:text-lg text-base font-semibold text-[#121212] text-center'>Enter the details to find out how much water you require!</h2>
 
         <Input
           required
           name='name'
           value={params.name}
           handleChange={handleChange}
-          label='Name'
+          label='Enter your name'
         />
 
         <Input
@@ -83,7 +89,7 @@ const Home = () => {
           name='phone'
           value={params.phone}
           handleChange={handleChange}
-          label='Phone'
+          label='Enter phone number'
         />
 
         <Input
@@ -91,7 +97,7 @@ const Home = () => {
           name='weight'
           value={params.weight}
           handleChange={handleChange}
-          label='Weight'
+          label='Enter your weight'
         />
 
         <SelectInput
@@ -105,7 +111,7 @@ const Home = () => {
           name='age'
           value={params.age}
           handleChange={handleChange}
-          label='Age'
+          label='Select your age group'
         />
 
         <SelectInput
@@ -118,7 +124,7 @@ const Home = () => {
           name='activeness'
           value={params.activeness}
           handleChange={handleChange}
-          label='Activeness'
+          label='How often do you exercise'
         />
 
         <SelectInput
@@ -131,7 +137,7 @@ const Home = () => {
           name='consume_frequency'
           value={params.consume_frequency}
           handleChange={handleChange}
-          label='Consumption Frequency'
+          label='Water Consumption Frequency'
         />
 
         <PrimaryButton type='submit' label='Learn how we can help you' width='w-full' />
