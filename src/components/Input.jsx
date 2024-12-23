@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Input = ({ value, name, type, handleChange, width, label }) => {
+const Input = ({ value, name, type, handleChange, width, label, required }) => {
     return (
         <div className={`${width || 'w-full'}`}>
             <input
                 placeholder={label}
                 type={type}
+                required={required}
                 name={name}
                 value={value}
                 onChange={handleChange}

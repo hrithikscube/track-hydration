@@ -1,16 +1,17 @@
 import React from 'react';
 
-const SelectInput = ({ value, name, options, handleChange, width, label }) => {
+const SelectInput = ({ value, name, options, handleChange, width, label, showPlaceholder = true, required }) => {
     return (
         <div className={`${width || 'w-full'} relative`}>
             <select
+                required={required}
                 placeholder={label}
                 name={name}
                 value={value}
                 onChange={handleChange}
                 className='h-[42px] px-3 pr-10 border border-[#808080]/50 w-full lg:text-base text-sm outline-[#121212] rounded bg-transparent appearance-none'
             >
-                <option value="" disabled>{label}</option>
+                {showPlaceholder && <option value="" disabled>{label}</option>}
                 {options.map((option) => (
                     <option key={option.value} value={option.value}>
                         {option.label}
