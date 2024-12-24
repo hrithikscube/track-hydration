@@ -11,7 +11,7 @@ const initial_fields = {
   weight: '',
   age: '',
   activeness: '',
-  consume_frequency: '',
+  // consume_frequency: '',
 }
 
 const Home = () => {
@@ -35,7 +35,7 @@ const Home = () => {
     if (params.age === 'Above 35') additionalWater += 0.3;
     if (params.activeness === '1 - 3 workouts / week') additionalWater += 0.5;
     if (params.activeness === '4+ workouts / week') additionalWater += 1.0;
-    if (params.consume_frequency === 'Frequently') additionalWater += 0.3;
+    // if (params.consume_frequency === 'Frequently') additionalWater += 0.3;
 
     setResult(`You need approximately ${(weightInLiters + additionalWater).toFixed(2)} liters of water daily.`);
   };
@@ -122,10 +122,15 @@ const Home = () => {
         <SelectInput
           required
           options={[
-            { name: 'Under 18', value: 'Under 18', label: 'Under 18' },
-            { name: '18 to 25', value: '18 to 25', label: '18 to 25' },
-            { name: '25 to 35', value: '25 to 35', label: '25 to 35' },
-            { name: 'Above 35', value: 'Above 35', label: 'Above 35' }
+            { name: 'Under 15', value: 'Under 15', label: 'Under 15' },
+            { name: '15-20', value: '15-20', label: '15-20' },
+            { name: '20-25', value: '20-25', label: '20-25' },
+            { name: '25-30', value: '25-30', label: '25-30' },
+            { name: '30-35', value: '30-35', label: '30-35' },
+            { name: '35-40', value: '35-40', label: '35-40' },
+            { name: '40-45', value: '40-45', label: '40-45' },
+            { name: '45-50', value: '45-50', label: '45-50' },
+            { name: 'Above 50', value: 'Above 50', label: 'Above 50' }
           ]}
           name='age'
           value={params.age}
@@ -146,7 +151,7 @@ const Home = () => {
           label='How often do you exercise'
         />
 
-        <SelectInput
+        {/* <SelectInput
           required
           options={[
             { name: 'Rarely', value: 'Rarely', label: 'Rarely' },
@@ -157,7 +162,7 @@ const Home = () => {
           value={params.consume_frequency}
           handleChange={handleChange}
           label='Water Consumption Frequency'
-        />
+        /> */}
 
         <PrimaryButton type='submit' label='Learn how we can help you' width='w-full' />
       </form>
