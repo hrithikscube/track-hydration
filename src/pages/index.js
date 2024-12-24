@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Head from 'next/head';
 import Input from '@/components/Input';
 import React, { useState } from 'react';
@@ -11,7 +12,6 @@ const initial_fields = {
   age: '',
   activeness: '',
   consume_frequency: '',
-  often_thirsty: ''
 }
 
 const Home = () => {
@@ -42,9 +42,28 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    calculateHydration();
-    setActiveScreen('Results');
+
+    const proxyURL = "/api/proxy";
+
+    let payload = {
+      name: params.name,
+      phone: params.phone,
+    }
+
+    axios.post(proxyURL, payload)
+      .then((response) => {
+        calculateHydration();
+        setActiveScreen('Results');
+        setParams(initial_fields);
+      })
+      .catch((error) => {
+        console.log("Error submitting form:", error);
+        calculateHydration();
+        setActiveScreen('Results');
+        setParams(initial_fields);
+      });
   };
+
 
   if (activeScreen === 'Results') {
     return (
