@@ -39,3 +39,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
 # track-hydration
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e30db319-df80-4b1f-860a-34c6bd906f47/deploy-status)](https://app.netlify.com/sites/teal-khapse-209ff7/deploys)
